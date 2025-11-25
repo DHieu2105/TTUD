@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Heap
+comment1.params=
+comment1.target=Heap()
+comment2.params=pq
+comment2.target=void\ sort(java.lang.Comparable[])
+comment3.params=pq\ k\ n
+comment3.target=void\ sink(java.lang.Comparable[],\ int,\ int)
+comment4.params=pq\ i\ j
+comment4.target=boolean\ less(java.lang.Comparable[],\ int,\ int)
+comment5.params=pq\ i\ j
+comment5.target=void\ exch(java.lang.Object[],\ int,\ int)
+comment6.params=a
+comment6.target=void\ show(java.lang.Comparable[])
+comment7.params=args
+comment7.target=void\ main(java.lang.String[])
+numComments=8

@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=FordFulkerson
+comment1.params=G\ s\ t
+comment1.target=FordFulkerson(FlowNetwork,\ int,\ int)
+comment10.params=G
+comment10.target=double\ minCutValue(FlowNetwork)
+comment11.params=args
+comment11.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=double\ value()
+comment3.params=v
+comment3.target=boolean\ inCut(int)
+comment4.params=v
+comment4.target=void\ validate(int)
+comment5.params=G\ s\ t
+comment5.target=boolean\ hasAugmentingPath(FlowNetwork,\ int,\ int)
+comment6.params=G\ v
+comment6.target=double\ excess(FlowNetwork,\ int)
+comment7.params=G\ s\ t
+comment7.target=boolean\ isFeasible(FlowNetwork,\ int,\ int)
+comment8.params=G\ s\ t
+comment8.target=boolean\ check(FlowNetwork,\ int,\ int)
+comment9.params=
+comment9.target=java.util.Set\ minCut()
+numComments=12

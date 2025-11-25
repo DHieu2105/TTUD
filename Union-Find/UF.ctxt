@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=UF
+comment1.params=n
+comment1.target=UF(int)
+comment2.params=p
+comment2.target=int\ find(int)
+comment3.params=
+comment3.target=int\ count()
+comment4.params=p\ q
+comment4.target=boolean\ connected(int,\ int)
+comment5.params=p\ q
+comment5.target=void\ union(int,\ int)
+comment6.params=p
+comment6.target=void\ validate(int)
+comment7.params=args
+comment7.target=void\ main(java.lang.String[])
+numComments=8

@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Quick
+comment1.params=a
+comment1.target=void\ sort(java.lang.Comparable[])
+comment10.params=args
+comment10.target=void\ main(java.lang.String[])
+comment2.params=a\ lo\ hi
+comment2.target=void\ sort(java.lang.Comparable[],\ int,\ int)
+comment3.params=a\ lo\ hi
+comment3.target=int\ partition(java.lang.Comparable[],\ int,\ int)
+comment4.params=a\ k
+comment4.target=java.lang.Comparable\ select(java.lang.Comparable[],\ int)
+comment5.params=v\ w
+comment5.target=boolean\ less(java.lang.Comparable,\ java.lang.Comparable)
+comment6.params=a\ i\ j
+comment6.target=void\ exch(java.lang.Object[],\ int,\ int)
+comment7.params=a
+comment7.target=boolean\ isSorted(java.lang.Comparable[])
+comment8.params=a\ lo\ hi
+comment8.target=boolean\ isSorted(java.lang.Comparable[],\ int,\ int)
+comment9.params=a
+comment9.target=void\ show(java.lang.Comparable[])
+numComments=11

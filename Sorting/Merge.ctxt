@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Merge
+comment1.params=
+comment1.target=Merge()
+comment10.params=a\ index\ aux\ lo\ hi
+comment10.target=void\ sort(java.lang.Comparable[],\ int[],\ int[],\ int,\ int)
+comment11.params=a
+comment11.target=void\ show(java.lang.Comparable[])
+comment12.params=args
+comment12.target=void\ main(java.lang.String[])
+comment2.params=a\ aux\ lo\ mid\ hi
+comment2.target=void\ merge(java.lang.Comparable[],\ java.lang.Comparable[],\ int,\ int,\ int)
+comment3.params=a\ aux\ lo\ hi
+comment3.target=void\ sort(java.lang.Comparable[],\ java.lang.Comparable[],\ int,\ int)
+comment4.params=a
+comment4.target=void\ sort(java.lang.Comparable[])
+comment5.params=v\ w
+comment5.target=boolean\ less(java.lang.Comparable,\ java.lang.Comparable)
+comment6.params=a
+comment6.target=boolean\ isSorted(java.lang.Comparable[])
+comment7.params=a\ lo\ hi
+comment7.target=boolean\ isSorted(java.lang.Comparable[],\ int,\ int)
+comment8.params=a\ index\ aux\ lo\ mid\ hi
+comment8.target=void\ merge(java.lang.Comparable[],\ int[],\ int[],\ int,\ int,\ int)
+comment9.params=a
+comment9.target=int[]\ indexSort(java.lang.Comparable[])
+numComments=13

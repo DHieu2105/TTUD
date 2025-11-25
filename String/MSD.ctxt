@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=MSD
+comment1.params=s\ d
+comment1.target=int\ charAt(java.lang.String,\ int)
+comment2.params=a
+comment2.target=void\ sort(java.lang.String[])
+comment3.params=a\ lo\ hi\ d
+comment3.target=void\ sort(java.lang.String[],\ int,\ int,\ int)
+comment4.params=a\ lo\ hi\ d
+comment4.target=void\ InsertionSort(java.lang.String[],\ int,\ int,\ int)
+comment5.params=v\ w\ d
+comment5.target=boolean\ less(java.lang.String,\ java.lang.String,\ int)
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7

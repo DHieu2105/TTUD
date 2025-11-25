@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Rabin_Karp
+comment1.params=patterm\ alphabet
+comment1.target=Rabin_Karp(java.lang.String,\ Alphabet)
+comment2.params=
+comment2.target=long\ longRandomPrime()
+comment3.params=key\ M
+comment3.target=long\ hash(java.lang.String,\ int)
+comment4.params=txt\ i
+comment4.target=boolean\ check(java.lang.String,\ int)
+comment5.params=txt
+comment5.target=int\ search(java.lang.String)
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7

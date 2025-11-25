@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=VietnameseSuffixArray
+comment1.params=words
+comment1.target=VietnameseSuffixArray(java.lang.String[])
+comment2.params=
+comment2.target=int\ length()
+comment3.params=i
+comment3.target=int\ lcp(int)
+comment4.params=s\ t
+comment4.target=int\ lcpsuffixWord(VietnameseSuffixArray.suffixWord,\ VietnameseSuffixArray.suffixWord)
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+numComments=6

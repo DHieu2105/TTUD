@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=FlowNetwork
+comment1.params=V
+comment1.target=FlowNetwork(int)
+comment10.params=
+comment10.target=java.lang.String\ toString()
+comment11.params=args
+comment11.target=void\ main(java.lang.String[])
+comment2.params=V\ E
+comment2.target=FlowNetwork(int,\ int)
+comment3.params=in
+comment3.target=FlowNetwork(In)
+comment4.params=
+comment4.target=int\ V()
+comment5.params=
+comment5.target=int\ E()
+comment6.params=v
+comment6.target=void\ validateVertex(int)
+comment7.params=e
+comment7.target=void\ addEdge(FlowEdge)
+comment8.params=v
+comment8.target=java.lang.Iterable\ adj(int)
+comment9.params=
+comment9.target=java.lang.Iterable\ edges()
+numComments=12

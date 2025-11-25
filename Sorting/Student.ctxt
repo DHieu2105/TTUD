@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Student
+comment1.params=middleName\ Name\ birthDate\ averageScore
+comment1.target=Student(java.lang.String,\ java.lang.String,\ java.util.Date,\ double)
+comment10.params=averageScore
+comment10.target=void\ setAverageScore(double)
+comment11.params=
+comment11.target=java.lang.String\ toString()
+comment2.params=o
+comment2.target=int\ compareTo(Student)
+comment3.params=
+comment3.target=java.lang.String\ getName()
+comment4.params=
+comment4.target=java.lang.String\ getMiddleName()
+comment5.params=
+comment5.target=java.util.Date\ getBirthDate()
+comment6.params=
+comment6.target=double\ getAverageScore()
+comment7.params=name
+comment7.target=void\ setName(java.lang.String)
+comment8.params=middleName
+comment8.target=void\ setMiddleName(java.lang.String)
+comment9.params=birthDate
+comment9.target=void\ setBirthDate(java.util.Date)
+numComments=12

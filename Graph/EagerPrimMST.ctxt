@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=EagerPrimMST
+comment1.params=G
+comment1.target=EagerPrimMST(edu.princeton.cs.algs4.EdgeWeightedGraph)
+comment2.params=G\ v
+comment2.target=void\ visit(edu.princeton.cs.algs4.EdgeWeightedGraph,\ int)
+comment3.params=
+comment3.target=java.lang.Iterable\ edges()
+comment4.params=
+comment4.target=double\ weight()
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+numComments=6

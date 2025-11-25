@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=LongestCommonSubstring
+comment1.params=
+comment1.target=LongestCommonSubstring()
+comment2.params=s\ p\ t\ q
+comment2.target=java.lang.String\ lcp(java.lang.String,\ int,\ java.lang.String,\ int)
+comment3.params=s\ p\ t\ q
+comment3.target=int\ compare(java.lang.String,\ int,\ java.lang.String,\ int)
+comment4.params=s\ t
+comment4.target=java.lang.String\ lcs(java.lang.String,\ java.lang.String)
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+numComments=6

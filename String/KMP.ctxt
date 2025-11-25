@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=KMP
+comment1.params=pattern\ alphabet
+comment1.target=KMP(java.lang.String,\ Alphabet)
+comment2.params=txt
+comment2.target=int\ search(java.lang.String)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+numComments=4

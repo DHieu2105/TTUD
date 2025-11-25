@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=SuffixArray
+comment1.params=text
+comment1.target=SuffixArray(java.lang.String)
+comment2.params=
+comment2.target=int\ length()
+comment3.params=i
+comment3.target=int\ index(int)
+comment4.params=i
+comment4.target=int\ lcp(int)
+comment5.params=s\ t
+comment5.target=int\ lcpSuffix(SuffixArray.Suffix,\ SuffixArray.Suffix)
+comment6.params=i
+comment6.target=java.lang.String\ select(int)
+comment7.params=query
+comment7.target=int\ rank(java.lang.String)
+comment8.params=s\ suffix
+comment8.target=int\ compare(java.lang.String,\ SuffixArray.Suffix)
+comment9.params=args
+comment9.target=void\ main(java.lang.String[])
+numComments=10
