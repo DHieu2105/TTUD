@@ -1,3 +1,7 @@
+import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class KMP {
     private int[][] dfa;
     private String pattern;
@@ -98,9 +102,18 @@ public class KMP {
                         "UÙÚỦŨỤƯỪỨỬỮỰ" +
                         "V" +
                         "X" +
-                        "YỲÝỶỸỴ";
+                        "YỲÝỶỸỴ"+
+                        " .,;:!?\"'()-0123456789\n\t";
         Alphabet alphabet = new Alphabet(vietnameseAlphabet);
-        KMP dfa = new KMP("đới", alphabet);
-        System.out.println(dfa.search("mđới"));
+        KMP dfa = new KMP("tri", alphabet);
+        
+        try {
+            System.setIn(new FileInputStream(new File("vbTV.txt")));
+        } catch (FileNotFoundException e) {
+            StdOut.println("Không tìm thấy file vbTV.txt");
+            return;
+        }
+        
+        StdOut.println(dfa.search(StdIn.readAll()));
     }
 }
