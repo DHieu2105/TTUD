@@ -65,7 +65,7 @@ public class MSD {
     }
 
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream(new File("nameclass.txt"))); // //file test
+        System.setIn(new FileInputStream(new File("name.txt"))); // //file test
         String[] a = new String[20];
         for (int i = 0; i < a.length; i++) {
             if (StdIn.hasNextLine()) {

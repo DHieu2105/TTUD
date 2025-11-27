@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=NFA
+comment1.params=regexp\ alphabet
+comment1.target=NFA(java.lang.String,\ Alphabet)
+comment2.params=txt
+comment2.target=boolean\ recognizes(java.lang.String)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+numComments=4
