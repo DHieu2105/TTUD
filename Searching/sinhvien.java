@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public class sinhvien {
     public static void main(String[] args) throws FileNotFoundException {
-        System.setIn(new FileInputStream(new File("sinhvien.csv")));
+        System.setIn(new FileInputStream(new File("students.csv")));
         ST<String, String> st = new ST<String, String>();
         while (!StdIn.isEmpty()) {
             String line = StdIn.readLine();
