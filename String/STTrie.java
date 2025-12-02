@@ -79,11 +79,11 @@ public class STTrie<Value> {
             collect(x.next[i], prefix, results);
             prefix.deleteCharAt(prefix.length() - 1);
         }
-//        for (char c = 0; c < alphabet.R(); c++) {
-//            prefix.append(c);
-//            collect(x.next[c], prefix, results);
-//            prefix.deleteCharAt(prefix.length() - 1);
-//        }
+        //for (char c = 0; c < alphabet.R(); c++) {
+        //    prefix.append(c);
+        //    collect(x.next[c], prefix, results);
+        //    prefix.deleteCharAt(prefix.length() - 1);
+        //}
     }
 
     public Iterable<String> keysThatMatch(String pattern) {

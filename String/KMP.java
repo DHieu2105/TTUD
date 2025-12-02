@@ -55,65 +55,32 @@ public class KMP {
     }
 
     public static void main(String[] args) {
-        String vietnameseAlphabet =
-                // chữ thường
-                "aàáảãạăằắẳẵặâầấẩẫậ " +
-                        "b" +
-                        "c" +
-                        "dđ" +
-                        "eèéẻẽẹêềếểễệ" +
-                        "g" +
-                        "h" +
-                        "iìíỉĩị" +
-                        "k" +
-                        "l" +
-                        "m" +
-                        "n" +
-                        "oòóỏõọôồốổỗộơờớởỡợ" +
-                        "p" +
-                        "q" +
-                        "r" +
-                        "s" +
-                        "t" +
-                        "uùúủũụưừứửữự" +
-                        "v" +
-                        "x" +
-                        "yỳýỷỹỵ" +
-
-                        // chữ hoa
-                        "AÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬ" +
-                        "B" +
-                        "C" +
-                        "DĐ" +
-                        "EÈÉẺẼẸÊỀẾỂỄỆ" +
-                        "G" +
-                        "H" +
-                        "IÌÍỈĨỊ" +
-                        "K" +
-                        "L" +
-                        "M" +
-                        "N" +
-                        "OÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢ" +
-                        "P" +
-                        "Q" +
-                        "R" +
-                        "S" +
-                        "T" +
-                        "UÙÚỦŨỤƯỪỨỬỮỰ" +
-                        "V" +
-                        "X" +
-                        "YỲÝỶỸỴ"+
-                        " .,;:!?\"'()-0123456789\n\t";
+        String vietnameseAlphabet = 
+            "aáàảãạăắằẳẵặâấầẩẫậeéèẻẽẹêếềểễệiíìỉĩị" +
+            "oóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựyýỳỷỹỵ" +
+            "bcdđghklmnpqrstvx" +
+            "AÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬEÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊ" +
+            "OÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢUÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴ" +
+            "BCDĐGHKLMNPQRSTVX .,;:!?\"'()-0123456789\n\t";
+    
         Alphabet alphabet = new Alphabet(vietnameseAlphabet);
-        KMP dfa = new KMP("tri", alphabet);
-        
+    
+        KMP kmp = new KMP("tri", alphabet);   // tìm từ "tri" không phân biệt hoa thường + dấu
+    
         try {
-            System.setIn(new FileInputStream(new File("vbTV.txt")));
+            System.setIn(new FileInputStream("vbTV.txt"));
         } catch (FileNotFoundException e) {
-            StdOut.println("Không tìm thấy file vbTV.txt");
+            System.out.println("Không tìm thấy file vbTV.txt");
             return;
         }
-        
-        StdOut.println(dfa.search(StdIn.readAll()));
+    
+        String text = StdIn.readAll();
+        int pos = kmp.search(text);
+    
+        if (pos == text.length()) {
+            System.out.println("Không tìm thấy từ \"tri\"");
+        } else {
+            System.out.println("Tìm thấy \"tri\" tại vị trí: " + pos);
+        }
     }
 }

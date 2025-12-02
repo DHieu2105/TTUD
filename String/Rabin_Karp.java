@@ -1,122 +1,109 @@
+import edu.princeton.cs.algs4.*;
+import java.io.*;
 import java.math.BigInteger;
 import java.util.Random;
 
 public class Rabin_Karp {
-    private String pat;
-    private long hashPat;
-    private int M; // patterm length
-    private int R; // alphabet_TiengViet size
-    private Alphabet alphabet;
-    // private int R = 256;
-    private long Q; // large prime number
-    private long rM; // R^(M-1) % Q
+    private String pat;         // pattern
+    private long hashPat;       // pattern hash
+    private int M;              // pattern length
+    private int R;              // alphabet size
+    private Alphabet alphabet;  // dùng Alphabet tự viết
+    private long Q;             // số nguyên tố lớn
+    private long rM;            // R^(M-1) % Q
 
-    public Rabin_Karp(String patterm, Alphabet alphabet) {
-        this.pat = patterm;
-        this.M = patterm.length();
+    public Rabin_Karp(String pattern, Alphabet alphabet) {
+        this.pat = pattern;
         this.alphabet = alphabet;
-        this.R = alphabet.R;
+        this.M = pattern.length();
+        this.R = alphabet.R();
         this.Q = longRandomPrime();
-        this.rM = 1;
-        for (int i = 1; i <= M - 1; i++) {
-            rM = (R * rM) % Q;
+
+        // Tính R^(M-1) % Q
+        rM = 1;
+        for (int i = 1; i < M; i++) {
+            rM = (rM * R) % Q;
         }
-        hashPat = hash(pat, M);
+
+        hashPat = hash(pattern, M);
     }
 
+    // Sinh số nguyên tố ngẫu nhiên ~ 31 bit
     private long longRandomPrime() {
         BigInteger prime = BigInteger.probablePrime(31, new Random());
         return prime.longValue();
     }
 
-    private long hash(String key, int M) {
+    // Tính hash cho đoạn văn bản độ dài M
+    private long hash(String key, int m) {
         long h = 0;
-        for (int i = 0; i < M; i++) {
+        for (int i = 0; i < m; i++) {
             h = (h * R + alphabet.toIndex(key.charAt(i))) % Q;
         }
         return h;
     }
 
+    // Kiểm tra khớp chính xác tại vị trí i
     private boolean check(String txt, int i) {
-        for (int j = 0; j < M; j++)
+        for (int j = 0; j < M; j++) {
             if (pat.charAt(j) != txt.charAt(i + j))
                 return false;
+        }
         return true;
     }
 
+    // Tìm vị trí đầu tiên của pattern trong txt
     public int search(String txt) {
         int n = txt.length();
-        if (n < M)
-            return n;
+        if (n < M) return n;
+
         long txtHash = hash(txt, M);
 
-        if ((hashPat == txtHash) && check(txt, 0))
+        if (hashPat == txtHash && check(txt, 0))
             return 0;
 
         for (int i = M; i < n; i++) {
-            txtHash = (txtHash + Q - rM * alphabet.toIndex(txt.charAt(i - M)) % Q) % Q;
+            // Xóa ký tự đầu, thêm ký tự cuối
+            txtHash = (txtHash + Q - (rM * alphabet.toIndex(txt.charAt(i - M)) % Q)) % Q;
             txtHash = (txtHash * R + alphabet.toIndex(txt.charAt(i))) % Q;
 
             int offset = i - M + 1;
-            if ((hashPat == txtHash) && check(txt, offset))
+            if (hashPat == txtHash && check(txt, offset))
                 return offset;
         }
-        return n;
+        return n; // không tìm thấy
     }
 
     public static void main(String[] args) {
         String vietnameseAlphabet =
-                // chữ thường
-                "aàáảãạăằắẳẵặâầấẩẫậ " +
-                        "b" +
-                        "c" +
-                        "dđ" +
-                        "eèéẻẽẹêềếểễệ" +
-                        "g" +
-                        "h" +
-                        "iìíỉĩị" +
-                        "k" +
-                        "l" +
-                        "m" +
-                        "n" +
-                        "oòóỏõọôồốổỗộơờớởỡợ" +
-                        "p" +
-                        "q" +
-                        "r" +
-                        "s" +
-                        "t" +
-                        "uùúủũụưừứửữự" +
-                        "v" +
-                        "x" +
-                        "yỳýỷỹỵ" +
-
-                        // chữ hoa
-                        "AÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬ" +
-                        "B" +
-                        "C" +
-                        "DĐ" +
-                        "EÈÉẺẼẸÊỀẾỂỄỆ" +
-                        "G" +
-                        "H" +
-                        "IÌÍỈĨỊ" +
-                        "K" +
-                        "L" +
-                        "M" +
-                        "N" +
-                        "OÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢ" +
-                        "P" +
-                        "Q" +
-                        "R" +
-                        "S" +
-                        "T" +
-                        "UÙÚỦŨỤƯỪỨỬỮỰ" +
-                        "V" +
-                        "X" +
-                        "YỲÝỶỸỴ";
+            "aáàảãạăắằẳẵặâấầẩẫậeéèẻẽẹêếềểễệiíìỉĩị" +
+            "oóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựyýỳỷỹỵđ" +
+            "bcdghklmnpqrstvx" +
+            "AÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬEÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊ" +
+            "OÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢUÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐ" +
+            "BCDGHKLMNPQRSTVX .,;:!?\"'()-0123456789\n\t";
 
         Alphabet alphabet = new Alphabet(vietnameseAlphabet);
 
-        Rabin_Karp r = new Rabin_Karp("Ngọc Anh", alphabet);
-        System.out.println(r.search("hẹ hẹ Nanh"));
+        // Tìm từ "triệu" – có dấu, có thể viết hoa/thường
+        Rabin_Karp rk = new Rabin_Karp("sách", alphabet);
+
+        try {
+            System.setIn(new FileInputStream("vbTV.txt"));
+        } catch (FileNotFoundException e) {
+            StdOut.println("Không tìm thấy file vbTV.txt");
+            return;
+        }
+
+        String text = StdIn.readAll();
+        int pos = rk.search(text);
+
+        if (pos == text.length()) {
+            StdOut.println("Không tìm thấy từ \"sách\"");
+        } else {
+            StdOut.println("Tìm thấy \"triệu\" tại vị trí: " + pos);
+            StdOut.println("Đoạn văn xung quanh: \"" + 
+                text.substring(Math.max(0, pos-20), Math.min(text.length(), pos+30)) + "\"");
+        }
     }
 }

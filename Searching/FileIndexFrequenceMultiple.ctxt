@@ -2,11 +2,11 @@
 comment0.target=FileIndexFrequenceMultiple
 comment1.params=
 comment1.target=FileIndexFrequenceMultiple()
-comment2.params=allFiles
-comment2.target=void\ readFiles(java.lang.String[])
-comment3.params=word
-comment3.target=ST\ query(java.lang.String)
-comment4.params=word
+comment2.params=word
+comment2.target=java.lang.String\ normalizeWord(java.lang.String)
+comment3.params=filenames
+comment3.target=void\ readFiles(java.lang.String[])
+comment4.params=keyword
 comment4.target=java.util.List\ querySorted(java.lang.String)
 comment5.params=args
 comment5.target=void\ main(java.lang.String[])
