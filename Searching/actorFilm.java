@@ -32,8 +32,8 @@ public class actorFilm {
             }
         }
 
-        StdOut.println("Các phim của Brown, Bryan (I):");
-        Queue<String> q = st.get("Brown, Bryan (I)");
+        StdOut.println("Các phim của Jayne, Billy:");
+        Queue<String> q = st.get("Jayne, Billy");
         if (q != null) {
             for (String movie : q) {
                 StdOut.println(" - " + movie);

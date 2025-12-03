@@ -65,12 +65,12 @@ public class KMP {
     
         Alphabet alphabet = new Alphabet(vietnameseAlphabet);
     
-        KMP kmp = new KMP("tri", alphabet);   // tìm từ "tri" không phân biệt hoa thường + dấu
+        KMP kmp = new KMP("lịch sử nhân loại", alphabet);   // tìm từ "tri" không phân biệt hoa thường + dấu
     
         try {
             System.setIn(new FileInputStream("vbTV.txt"));
         } catch (FileNotFoundException e) {
-            System.out.println("Không tìm thấy file vbTV.txt");
+            StdOut.println("Không tìm thấy file vbTV.txt");
             return;
         }
     
@@ -78,9 +78,9 @@ public class KMP {
         int pos = kmp.search(text);
     
         if (pos == text.length()) {
-            System.out.println("Không tìm thấy từ \"tri\"");
+            StdOut.println("Không tìm thấy từ");
         } else {
-            System.out.println("Tìm thấy \"tri\" tại vị trí: " + pos);
+            StdOut.println("Tìm thấy");
         }
     }
 }

@@ -90,7 +90,7 @@ public class FileIndexFrequenceMultiple {
         FileIndexFrequenceMultiple indexer = new FileIndexFrequenceMultiple();
         indexer.readFiles(args);  // ← đúng tên phương thức
 
-        String[] keywords = { "học"  };
+        String[] keywords = { "times" ,"it" };
 
         for (String kw : keywords) {
             StdOut.println("\n════════════════════════════════");
