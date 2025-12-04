@@ -14,7 +14,7 @@ public class GREP {
 
         Alphabet viet = new Alphabet(new String(Alphabet.VIETNAMESE));
 
-        NFA nfa = new NFA(regexp, viet);
+        NFA nfa = new NFA(regexp);
 
         // đọc file nhưng xử lý UTF-8 đúng cách
         In in = new In(args[1]);

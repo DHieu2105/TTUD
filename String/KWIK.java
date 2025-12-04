@@ -30,7 +30,7 @@ public class KWIK {
             query = query.trim();
             if (query.isEmpty()) continue;
 
-            System.out.printf("→ Đang tìm: \"%s\" (ngữ cảnh ±%d ký tự)%n", query, context);
+            StdOut.printf("→ Đang tìm: \"%s\" (ngữ cảnh ±%d ký tự)%n", query, context);
 
             int found = 0;
             
@@ -50,11 +50,11 @@ public class KWIK {
                 // Đánh dấu từ khóa bằng chữ in đậm (dùng ký tự Unicode hoặc màu nếu muốn)
                 String highlighted = snippet.replace(query, "❱❱" + query + "❰❰");
 
-                System.out.println(highlighted);
+                StdOut.println(highlighted);
                 found++;
             }
 
-            System.out.println(found > 0 ? 
+            StdOut.println(found > 0 ? 
                 "\nTìm thấy " + found + " kết quả.\n" : 
                 "Không tìm thấy.\n");
         }

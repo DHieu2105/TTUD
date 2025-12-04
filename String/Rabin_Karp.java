@@ -101,7 +101,7 @@ public class Rabin_Karp {
         if (pos == text.length()) {
             StdOut.println("Không tìm thấy từ \"sách\"");
         } else {
-            StdOut.println("Tìm thấy \"triệu\" tại vị trí: " + pos);
+            StdOut.println("Tìm thấy \"sách\" tại vị trí: " + pos);
             StdOut.println("Đoạn văn xung quanh: \"" + 
                 text.substring(Math.max(0, pos-20), Math.min(text.length(), pos+30)) + "\"");
         }

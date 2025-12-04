@@ -79,7 +79,7 @@ public class VietnameseSuffixArray {
         for (int i = 1; i < suffix.length(); i++) {
             if (suffix.lcp(i) > max) max = suffix.lcp(i);
         }
-        System.out.println(max);
+        StdOut.println(max);
     }
 
 }

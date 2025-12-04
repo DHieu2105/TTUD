@@ -1,9 +1,7 @@
 import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.StdIn;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.FileInputStream;
 
 public class STTrie<Value> {
 
@@ -101,7 +99,7 @@ public class STTrie<Value> {
         char c = pattern.charAt(d);
         for (int i = 0; i<alphabet.R(); i++ ) {
             char ch = alphabet.toChar(i);
-            if (c =='.' || ch == c) {
+            if (c =='_' || ch == c) {
                 prefix.append(ch);
                 collect(x.next[i], prefix, pattern, results);
                 prefix.deleteCharAt(prefix.length() - 1);
@@ -109,7 +107,6 @@ public class STTrie<Value> {
         }
 
     }
-
 
     public String longestPrefixOf(String query) {
         if (query == null) throw new IllegalArgumentException("argument to longestPrefixOf() is null");
@@ -122,76 +119,63 @@ public class STTrie<Value> {
         if (x.val != null) length = d;
         if (d == query.length()) return length;
         char c = query.charAt(d);
-        return longestPrefixOf(x.next[c], query, d+1, length);
+        int idx = alphabet.toIndex(c); //
+        if (idx == -1) return length;
+        return longestPrefixOf(x.next[idx], query, d+1, length);
     }
 
-
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream(new File("sinhvienContext.csv")));
+        System.setIn(new FileInputStream(new File("sinhviencontext.csv")));
         StdIn.readLine();
-        String vietnameseAlphabet =
-                // chữ thường
-                "aàáảãạăằắẳẵặâầấẩẫậ " +
-                        "b" +
-                        "c" +
-                        "dđ" +
-                        "eèéẻẽẹêềếểễệ" +
-                        "g" +
-                        "h" +
-                        "iìíỉĩị" +
-                        "k" +
-                        "l" +
-                        "m" +
-                        "n" +
-                        "oòóỏõọôồốổỗộơờớởỡợ" +
-                        "p" +
-                        "q" +
-                        "r" +
-                        "s" +
-                        "t" +
-                        "uùúủũụưừứửữự" +
-                        "v" +
-                        "x" +
-                        "yỳýỷỹỵ" +
-
-                        // chữ hoa
-                        "AÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬ" +
-                        "B" +
-                        "C" +
-                        "DĐ" +
-                        "EÈÉẺẼẸÊỀẾỂỄỆ" +
-                        "G" +
-                        "H" +
-                        "IÌÍỈĨỊ" +
-                        "K" +
-                        "L" +
-                        "M" +
-                        "N" +
-                        "OÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢ" +
-                        "P" +
-                        "Q" +
-                        "R" +
-                        "S" +
-                        "T" +
-                        "UÙÚỦŨỤƯỪỨỬỮỰ" +
-                        "V" +
-                        "X" +
-                        "YỲÝỶỸỴ";
+        String vietnameseAlphabet = Alphabet.VIETNAMESE;
 
 
         Alphabet alphabet = new Alphabet(vietnameseAlphabet);
-        STTrie<String> trie = new STTrie(alphabet);
+        STTrie<String> trie = new STTrie<String>(alphabet);
         while (StdIn.hasNextLine()) {
             String[] S = StdIn.readLine().split(",");
             String key = S[0] + " " + S[1];
             String val = S[2];
             trie.put(key,val);
         }
-        Queue<String> q = new Queue<>();
 
-        for (String s : trie.keysThatMatch("......Nguyễn....")) {
+
+        //Bai21
+        StdOut.println("longestPrefixOf(\" \"):");
+        StdOut.println(trie.longestPrefixOf(" "));
+        StdOut.println();
+        StdOut.println("keysWithPrefix(\"Anh\"):");
+        for (String s : trie.keysWithPrefix("Anh"))
             StdOut.println(s);
-        }
+        StdOut.println();
+        StdOut.println("keysThatMatch(\"____Nguyễn_____\"):");
+        for (String s : trie.keysThatMatch("_____Nguyễn____"))
+            StdOut.println(s);
+        StdOut.println();
+
+
+
+
+        //StdOut.println("longestPrefixOf(\"shellsort\"):");
+        //StdOut.println(trie.longestPrefixOf("shellsort"));
+        //StdOut.println();
+
+        //StdOut.println("keysWithPrefix(\"shor\"):");
+        //for (String s : trie.keysWithPrefix("shor"))
+        //    StdOut.println(s);
+        //StdOut.println();
+
+        //StdOut.println("keysThatMatch(\".he.l.\"):");
+        //for (String s : trie.keysThatMatch(".he..."))
+        //    StdOut.println(s);
+
+        //System.out.println(trie.longestPrefixOf("Quang Nguyễn Văn Nam"));
+        //for (String s : trie.keysThatMatch("..Nguyễn....")) {
+        //    System.out.println(s);
+        //}
+        //for (String s : trie.keysWithPrefix("Anh ")){
+        //    System.out.println(s);
+        //}
 
     }
 }
