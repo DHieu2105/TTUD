@@ -55,17 +55,11 @@ public class KMP {
     }
 
     public static void main(String[] args) {
-        String vietnameseAlphabet = 
-            "aáàảãạăắằẳẵặâấầẩẫậeéèẻẽẹêếềểễệiíìỉĩị" +
-            "oóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựyýỳỷỹỵ" +
-            "bcdđghklmnpqrstvx" +
-            "AÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬEÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊ" +
-            "OÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢUÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴ" +
-            "BCDĐGHKLMNPQRSTVX .,;:!?\"'()-0123456789\n\t";
+        String vietnameseAlphabet = Alphabet.VIETNAMESE;
     
         Alphabet alphabet = new Alphabet(vietnameseAlphabet);
     
-        KMP kmp = new KMP("lịch sử nhân loại", alphabet);   // tìm từ "tri" không phân biệt hoa thường + dấu
+        KMP kmp = new KMP("lịch sử", alphabet);   // tìm từ "tri" không phân biệt hoa thường + dấu
     
         try {
             System.setIn(new FileInputStream("vbTV.txt"));

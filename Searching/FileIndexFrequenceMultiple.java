@@ -1,15 +1,27 @@
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.EdgeWeightedDigraph; // ← ĐÚNG tên gói
+import edu.princeton.cs.algs4.DirectedEdge;
+import edu.princeton.cs.algs4.IndexMinPQ;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.ST;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Alphabet;
+
 import java.io.File;
 import java.util.*;
 
 public class FileIndexFrequenceMultiple {
 
-    private ST<String, ST<File, Integer>> st;
+    // Cấu trúc: từ → (file → số lần xuất hiện)
+    private ST<String, ST<File, Integer>> index;
 
-    // Alphabet tiếng Việt (đã sửa dùng HashMap, không lỗi Unicode)
+    // Bảng chữ cái tiếng Việt + ký tự cho phép
     private static final Alphabet VIET_ALPHABET = new Alphabet(
-        "aáàảãạăắằẳẵặâấầẩẫậeéèẻẽẹêếềểễệiíìỉĩị" +
-        "oóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựyýỳỷỹỵđ" +
+        "aáàảãạăắằẳẵặâấầẩẫậ" +
+        "eéèẻẽẹêếềểễệ" +
+        "iíìỉĩị" +
+        "oóòỏõọôốồổỗộơớờởỡợ" +
+        "uúùủũụưứừửữự" +
+        "yýỳỷỹỵđ" +
         "bcdghklmnpqrstvx" +
         "AÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬEÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊ" +
         "OÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢUÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐ" +
@@ -17,11 +29,11 @@ public class FileIndexFrequenceMultiple {
     );
 
     public FileIndexFrequenceMultiple() {
-        st = new ST<>();
+        index = new ST<>();
     }
 
-    // Chuẩn hóa từ: chỉ giữ chữ cái + chuyển thường + giữ nguyên dấu
-    private static String normalizeWord(String word) {
+    // Chuẩn hóa từ: chỉ giữ ký tự hợp lệ + chuyển về chữ thường (giữ nguyên dấu)
+    private static String normalize(String word) {
         if (word == null || word.isEmpty()) return "";
         StringBuilder sb = new StringBuilder();
         for (char c : word.toCharArray()) {
@@ -32,83 +44,82 @@ public class FileIndexFrequenceMultiple {
         return sb.toString();
     }
 
-    // ĐỌC TẤT CẢ FILE – DÙNG TỪ ĐÃ CHUẨN HÓA LÀM KEY
-    public void readFiles(String[] filenames) {
+    // Đọc và lập chỉ mục tất cả file
+    public void buildIndex(String[] filenames) {
         for (String filename : filenames) {
             File file = new File(filename);
-            if (!file.exists()) {
-                StdOut.println("Không tìm thấy: " + filename);
+            if (!file.exists() || !file.isFile()) {
+                StdOut.println("Không tìm thấy hoặc không phải file: " + filename);
                 continue;
             }
 
             In in = new In(file);
-            String content = in.readAll();  // Đọc hết nội dung file
+            String content = in.readAll();
+            in.close();
 
-            // Tách từ theo khoảng trắng và dấu câu
-            String[] words = content.split("[\\s\\p{Punct}]+");
+            String[] words = content.split("[\\s\\p{Punct}]+"); // tách từ cực chuẩn
 
-            for (String rawWord : words) {
-                if (rawWord.trim().isEmpty()) continue;
+            for (String raw : words) {
+                String word = normalize(raw);
+                if (word.isEmpty()) continue;
 
-                String normalized = normalizeWord(rawWord);  // ← chuẩn hóa
-                if (normalized.isEmpty()) continue;
+                // Lấy hoặc tạo ST cho từ này
+                index.putIfAbsent(word, new ST<>());
+                ST<File, Integer> files = index.get(word);
 
-                // Dùng từ đã chuẩn hóa làm key
-                if (!st.contains(normalized)) {
-                    st.put(normalized, new ST<>());
-                }
-
-                ST<File, Integer> fileCount = st.get(normalized);
-
-                if (fileCount.contains(file)) {
-                    fileCount.put(file, fileCount.get(file) + 1);
-                } else {
-                    fileCount.put(file, 1);
-                }
+                // Cập nhật số lần xuất hiện trong file hiện tại
+                files.put(file, files.getOrDefault(file, 0) + 1);
             }
         }
     }
 
-    // Tìm kiếm theo từ khóa (sẽ tự chuẩn hóa)
-    public List<Map.Entry<File, Integer>> querySorted(String keyword) {
-        String normalized = normalizeWord(keyword);
-        if (normalized.isEmpty()) return null;
+    // Tổng số lần xuất hiện của từ trong TOÀN BỘ file
+    public int totalFrequency(String keyword) {
+        String word = normalize(keyword);
+        if (word.isEmpty() || !index.contains(word)) return 0;
 
-        ST<File, Integer> fileST = st.get(normalized);
-        if (fileST == null || fileST.isEmpty()) return null;
-
-        List<Map.Entry<File, Integer>> list = new ArrayList<>();
-        for (File f : fileST.keys()) {
-            list.add(new AbstractMap.SimpleEntry<>(f, fileST.get(f)));
+        int total = 0;
+        for (int count : index.get(word).values()) {
+            total += count;
         }
-        list.sort((a, b) -> b.getValue().compareTo(a.getValue())); // giảm dần
-        return list;
+        return total;
     }
 
-    // MAIN HOÀN CHỈNH
+    // In kết quả đẹp + sắp xếp giảm dần theo tần suất
     public static void main(String[] args) {
-        FileIndexFrequenceMultiple indexer = new FileIndexFrequenceMultiple();
-        indexer.readFiles(args);  // ← đúng tên phương thức
-
-        String[] keywords = { "times" ,"it" };
-
-        for (String kw : keywords) {
-            StdOut.println("\n════════════════════════════════");
-            StdOut.printf("Tìm kiếm: \"%s\"\n", kw);
-
-            List<Map.Entry<File, Integer>> result = indexer.querySorted(kw);
-
-            if (result == null || result.isEmpty()) {
-                StdOut.println("→ Không tìm thấy!");
-                continue;
-            }
-
-            StdOut.println("→ Kết quả (" + result.size() + " file):");
-            for (Map.Entry<File, Integer> e : result) {
-                StdOut.printf("   %-30s : %4d lần\n", e.getKey().getName(), e.getValue());
-            }
+        if (args.length == 0) {
+            StdOut.println("Cách dùng: java FileIndexFrequenceMultiple file1.txt file2.txt ...");
+            return;
         }
 
-        StdOut.println("\n════════════════════════════════");
+        FileIndexFrequenceMultiple indexer = new FileIndexFrequenceMultiple();
+        indexer.buildIndex(args);
+
+        // Danh sách từ bạn muốn kiểm tra (có thể thay đổi thoải mái)
+        String[] keywords = { "tôi", "việt", "nam", "yêu", "the", "and", "of", "it", "times", "đẹp", "học" };
+
+        // Tạo danh sách để sắp xếp
+        List<Map.Entry<String, Integer>> list = new ArrayList<>();
+        for (String kw : keywords) {
+            list.add(new AbstractMap.SimpleEntry<>(kw, indexer.totalFrequency(kw)));
+        }
+
+        // Sắp xếp giảm dần theo số lần xuất hiện
+        list.sort((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+
+        // In kết quả đẹp như báo cáo
+        StdOut.println("\n══════════════════════════════════════");
+        StdOut.println("     THỐNG KÊ TẦN SUẤT TỪ (toàn bộ file)");
+        StdOut.println("══════════════════════════════════════");
+        StdOut.printf("%-12s %8s\n", "Từ khóa", "Số lần");
+        StdOut.println("──────────────────────────────────────");
+
+        for (var e : list) {
+            String star = e.getValue() > 0 ? "" : " (không có)";
+            StdOut.printf("%-15s → %4d lần%s\n", e.getKey(), e.getValue(), star);
+        }
+
+        StdOut.println("══════════════════════════════════════");
+        StdOut.printf("Đã xử lý %,d file thành công!\n", args.length);
     }
 }

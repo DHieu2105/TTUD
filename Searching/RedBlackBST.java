@@ -133,11 +133,6 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return balance(h);
     }
 
-    /**
-     * Removes the largest key and associated value from the symbol table.
-     * 
-     * @throws NoSuchElementException if the symbol table is empty
-     */
     public void deleteMax() {
         if (isEmpty())
             throw new NoSuchElementException("BST underflow");

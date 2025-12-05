@@ -10,7 +10,6 @@ comment12.params=h
 comment12.target=RedBlackBST.Node\ deleteMin(RedBlackBST.Node)
 comment13.params=
 comment13.target=void\ deleteMax()
-comment13.text=\r\n\ Removes\ the\ largest\ key\ and\ associated\ value\ from\ the\ symbol\ table.\r\n\ \r\n\ @throws\ NoSuchElementException\ if\ the\ symbol\ table\ is\ empty\r\n
 comment14.params=h
 comment14.target=RedBlackBST.Node\ deleteMax(RedBlackBST.Node)
 comment15.params=key

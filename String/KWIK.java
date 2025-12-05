@@ -16,9 +16,7 @@ public class KWIK {
         In in = new In(args[0]);
         int context = Integer.parseInt(args[1]);  
         
-        String text = in.readAll()
-                .replaceAll("\\s+", " ")    
-                .trim();
+        String text = in.readAll().replaceAll("\\s+", " ").trim();
 
         int n = text.length();
 

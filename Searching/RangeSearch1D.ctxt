@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=RangeSearch1D
+comment1.params=
+comment1.target=RangeSearch1D()
+comment2.params=key\ val
+comment2.target=void\ insert(java.lang.Comparable,\ java.lang.Object)
+comment3.params=key
+comment3.target=java.lang.Object\ search(java.lang.Comparable)
+comment4.params=key
+comment4.target=boolean\ contains(java.lang.Comparable)
+comment5.params=key
+comment5.target=void\ delete(java.lang.Comparable)
+comment6.params=lo\ hi
+comment6.target=void\ rangeSearch(java.lang.Comparable,\ java.lang.Comparable)
+comment7.params=lo\ hi
+comment7.target=java.util.ArrayList\ rangeSearch2(java.lang.Comparable,\ java.lang.Comparable)
+comment8.params=lo\ hi
+comment8.target=int\ rangeCount(java.lang.Comparable,\ java.lang.Comparable)
+comment9.params=args
+comment9.target=void\ main(java.lang.String[])
+numComments=10
